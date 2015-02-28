@@ -1,7 +1,7 @@
 package MooX::Role::Pluggable;
-$MooX::Role::Pluggable::VERSION = '1.001001';
+$MooX::Role::Pluggable::VERSION = '1.001002';
 use Carp;
-use strictures 1;
+use strictures 2;
 
 use Scalar::Util 'blessed';
 use Try::Tiny;

@@ -1,6 +1,6 @@
 package MooX::Role::Pluggable::Constants;
-$MooX::Role::Pluggable::Constants::VERSION = '1.001001';
-use strictures 1;
+$MooX::Role::Pluggable::Constants::VERSION = '1.001002';
+use strictures 2;
 
 sub EAT_NONE   () { 1 }
 sub EAT_CLIENT () { 2 }
