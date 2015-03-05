@@ -5,7 +5,6 @@ author:
 build_requires:
   ExtUtils::MakeMaker: 0
   File::Spec: 0
-  Test::Exception: 0
   Test::More: 0.88
 configure_requires:
   ExtUtils::MakeMaker: 0
@@ -18,14 +17,13 @@ meta-spec:
 name: MooX-Role-Pluggable
 requires:
   Carp: 0
-  Moo: 1.004
-  MooX::late: 0.014
+  Moo: 1.006
   Scalar::Util: 0
   Try::Tiny: 0
   Type::Tiny: 1
   parent: 0
-  perl: v5.8.9
+  perl: 5.008009
   strictures: 2
 resources:
   repository: git://github.com/avenj/moox-role-pluggable.git
-version: 1.001002
+version: 1.002001

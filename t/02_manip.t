@@ -19,7 +19,6 @@ my $dispatcher_expected = {
   package
     MyDispatcher;
   use Test::More;
-  use Test::Exception;
   use Moo;
   with 'MooX::Role::Pluggable';
 
@@ -39,12 +38,11 @@ my $dispatcher_expected = {
   sub do_test_events {
     my ($self) = @_;
 
-    dies_ok(sub { $self->_pluggable_init( types => '' ) },
-      'Bad args _pluggable_init dies'
-    );
-    dies_ok(sub { $self->_pluggable_process('type', 'event') },
-      'Bad args _pluggable_process dies'
-    );
+    local $@;
+    eval {; $self->_pluggable_init( types => '' ) };
+    ok $@, 'Bad args _pluggable_init dies';
+    eval {; $self->_pluggable_process('type', 'event') };
+    ok $@, 'Bad args _pluggable_process dies';
 
     $self->process( 'test', 0 );
     $self->process( 'eatable' );
@@ -269,7 +267,10 @@ $disp->do_test_events;
 }
 
 ## plugin_alias_list()
-cmp_ok( $disp->plugin_alias_list, '==', 2, 'plugin_alias_list has 2 plugs' );
+## (should be ordered)
+my @listed = $disp->plugin_alias_list;
+is_deeply \@listed, [ 'MyPlugA', 'MyPlugB' ],
+  'plugin_alias_list ok';
 
 ## plugin_pipe_bump_up()
 $disp->plugin_pipe_bump_up( 'MyPlugB', 1 );
